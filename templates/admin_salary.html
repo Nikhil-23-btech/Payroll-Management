@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="card shadow">
+      <div class="card-header">
+        <h4>📄 Generate Salary Slip</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/generate_slip">
+          <div class="mb-3">
+            <label for="employee_id" class="form-label">Employee</label>
+            <select name="employee_id" id="employee_id" class="form-select" required>
+              {% for emp in employees %}
+              <option value="{{ emp._id }}">{{ emp.name }} ({{ emp.email }})</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="month" class="form-label">Month</label>
+            <input type="text" name="month" id="month" class="form-control" placeholder="e.g., January 2024" required />
+          </div>
+          <div class="mb-3">
+            <label for="basic" class="form-label">Basic Salary (₹)</label>
+            <input type="number" name="basic" id="basic" class="form-control" required step="0.01" />
+          </div>
+          <div class="mb-3">
+            <label for="bonus" class="form-label">Bonus (₹)</label>
+            <input type="number" name="bonus" id="bonus" class="form-control" step="0.01" />
+          </div>
+          <div class="mb-3">
+            <label for="deductions" class="form-label">Deductions (₹)</label>
+            <input type="number" name="deductions" id="deductions" class="form-control" step="0.01" />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">✅ Generate Slip</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

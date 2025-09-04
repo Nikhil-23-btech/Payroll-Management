@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navbar-nav .nav-text {
+  font-weight: 500;
+}
+
+/* Cards & Forms */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-success {
+  background-color: #2ecc71;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+/* Dashboard Layout */
+.chart-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.chart-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.table {
+  margin-top: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.table thead th {
+  background-color: #3498db;
+  color: white;
+  border: none;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f7fb;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  padding: 20px 0;
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .table th, .table td {
+    padding: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chart-container img {
+    max-height: 280px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card-header h4,
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-control,
+  .form-select,
+  .btn {
+    font-size: 0.95rem;
+  }
+
+  .alert {
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}

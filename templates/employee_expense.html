@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="card shadow">
+      <div class="card-header">
+        <h4>📤 Submit Expense</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/submit_expense">
+          <div class="mb-3">
+            <label for="month" class="form-label">Month</label>
+            <input type="text" name="month" id="month" class="form-control" placeholder="e.g., January 2024" required />
+          </div>
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount (₹)</label>
+            <input type="number" name="amount" id="amount" class="form-control" required step="0.01" />
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-select" required>
+              <option value="Travel">🚗 Travel</option>
+              <option value="Meals">🍱 Meals</option>
+              <option value="Supplies">📎 Supplies</option>
+              <option value="Other">🔧 Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description (Optional)</label>
+            <textarea name="description" id="description" class="form-control" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success w-100">📤 Submit Expense</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

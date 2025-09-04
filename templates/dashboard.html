@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">📋 Dashboard</h2>
+
+{% if role == 'admin' %}
+<div class="row">
+  <!-- Employees List -->
+  <div class="col-12 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>👥 Employees</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          {% for emp in employees %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ emp.name }}</strong><br>
+              <small class="text-muted">{{ emp.email }}</small>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salary Slips Table -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>💰 Recent Salary Slips</h5>
+      </div>
+      <div class="card-body">
+        {% if salary_slips %}
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Month</th>
+                <th>Basic</th>
+                <th>Bonus</th>
+                <th>Deductions</th>
+                <th>Net Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for slip in salary_slips %}
+              <tr>
+                <td>{{ slip.employee_name }}</td>
+                <td>{{ slip.month }}</td>
+                <td>₹{{ "%.2f"|format(slip.basic) }}</td>
+                <td>₹{{ "%.2f"|format(slip.bonus) }}</td>
+                <td>₹{{ "%.2f"|format(slip.deductions) }}</td>
+                <td><strong>₹{{ "%.2f"|format(slip.net_salary) }}</strong></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="text-muted">No salary slips generated yet.</p>
+        {% endif %}
+        <a href="{{ url_for('admin_salary') }}" class="btn btn-primary">Generate Salary Slip</a>
+      </div>
+    </div>
+  </div>
+
+{% elif role == 'employee' %}
+
+<!-- Charts -->
+<div class="row">
+  <div class="col-12 col-lg-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header"><h5>📈 Salary History</h5></div>
+      <div class="card-body d-flex align-items-center justify-content-center">
+        {% if salary_chart %}
+          <img src="{{ salary_chart }}" class="img-fluid" alt="Salary Chart" />
+        {% else %}
+          <p class="text-muted">No salary data available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header"><h5>🧾 Expense History</h5></div>
+      <div class="card-body d-flex align-items-center justify-content-center">
+        {% if expense_chart %}
+          <img src="{{ expense_chart }}" class="img-fluid" alt="Expense Chart" />
+        {% else %}
+          <p class="text-muted">No expense submitted yet.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Expense Table -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>📨 Submitted Expenses</h5>
+      </div>
+      <div class="card-body">
+        {% if expenses %}
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in expenses %}
+              <tr>
+                <td>{{ e.month }}</td>
+                <td>₹{{ "%.2f"|format(e.amount) }}</td>
+                <td><span class="badge bg-info text-dark">{{ e.category }}</span></td>
+                <td>{{ e.description or '–' }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="text-muted">You haven't submitted any expenses.</p>
+        {% endif %}
+        <a href="{{ url_for('employee_expense') }}" class="btn btn-success">➕ Submit New Expense</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
