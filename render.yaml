@@ -1,12 +1,15 @@
 # render.yaml
 services:
   - type: web
-    name: my-flask-app
+    name: payroll-management-app
     runtime: python-3.11
-    env: production
-    plan: free
     buildCommand: |
-      pip install --upgrade pip
+      python -m pip install --upgrade pip
       pip install --upgrade setuptools wheel
       pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0 app:app
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: PYTHONUNBUFFERED
+        value: 1
