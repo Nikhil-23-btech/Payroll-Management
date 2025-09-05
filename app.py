@@ -18,7 +18,7 @@ expenses = None
 
 try:
     client = MongoClient(
-        'mongodb+srv://nikhilnandanavanam123:11223344@traffic-telligence.imyrg7m.mongodb.net/?retryWrites=true&w=majority&appName=Traffic-telligence',
+        'Paste your mongodb atlas uri',
         tls=True,
         tlsCAFile=certifi.where(),
         serverSelectionTimeoutMS=30000,
@@ -310,4 +310,5 @@ def server_error(e):
 if __name__ == "__main__":
 
     app.run(host='0.0.0.0',debug=True)
+
 
