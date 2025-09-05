@@ -16,9 +16,10 @@ users = None
 salary_slips = None
 expenses = None
 
+MONGO_URI = os.getenv("MONGO_URI")
 try:
     client = MongoClient(
-        'Paste your mongodb atlas uri',
+        MONGO_URI,
         tls=True,
         tlsCAFile=certifi.where(),
         serverSelectionTimeoutMS=30000,
@@ -310,5 +311,6 @@ def server_error(e):
 if __name__ == "__main__":
 
     app.run(host='0.0.0.0',debug=True)
+
 
 
